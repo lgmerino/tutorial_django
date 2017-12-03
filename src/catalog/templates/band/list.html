@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de grupos{% endblock %}
+
+{% block content %}
+<h1>Lista de grupos</h1>
+<a class="btn btn-primary" href="{% url "BandCreateView" %}">Crear nuevo grupo</a>
+<br/><br/>
+<table class="table">
+<thead>
+    <tr>
+    <th>Nombre</th>
+    <th>Web</th>
+    <th>Biografía</th>
+    <th>Opciones</th>
+    </tr>
+</thead>
+<tbody>
+{% for band in object_list %}
+    <tr>
+	<td>{{ band.name}}</td>
+	<td><a href='{{ band.web }}'>{{band.web}}</a></td>
+	<td>{{ band.bio }}</td>
+    <td><a class="btn btn-primary" href='{% url "BandUpdateView" band.pk %}'>Editar</a>
+    <a class="btn btn-primary" href='{% url "BandDeleteView" band.pk %}'>Eliminar</a></td>
+    </tr>
+{% empty %}
+    <tr><td>Aún no hay grupos</td></tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}

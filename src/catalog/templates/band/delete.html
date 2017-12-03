@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Eliminar {{ object.name }}{% endblock %}
+
+{% block content %}
+<h1>¿De verdad quieres eliminar {{ object.name }}?</h1>
+<form method="POST" action="">
+    {% csrf_token %}
+    <br/>
+    <input class="btn" type="button" value="Cancelar" onclick="javascript:window.location='{% url 'BandListView' %}'">
+    <input class="btn btn-primary" type="submit" value="Eliminar">
+</form>
+{% endblock %}
